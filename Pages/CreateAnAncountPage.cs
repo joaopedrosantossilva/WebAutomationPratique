@@ -12,141 +12,141 @@ using Xunit.Abstractions;
 namespace WebAutomationPratique.Pages {
     public class CreateAnAncountPage {
 
-        private IWebDriver driver;
-        private By byInputEmailAddress;
-        private By byButtonCreateAnAccount;
-        private By byInputTitle;
-        private By byInputFirstName;
-        private By byInputLastName;
-        private By byInputEmail;
-        private By byInputPassword;
-        private By bySelectDays;
-        private By bySelectMonths;
-        private By bySelectYears;
-        private By byInputCompany;
-        private By byInputAddress;
-        private By byInputCity;
-        private By bySelectState;
-        private By byInputPostalCode;
-        private By bySelectCountry;
-        private By byInputMobilePhone;
-        private By byEmailFutureReference;
-        private By byButtonRegistrer;
-        private By byTextWelcomeToYourAccount;
-        private FakeDataGenerator generator;
-        public string email;
-        private By byMessageEmailInvalid;
+        private IWebDriver Driver;
+        private By ByInputEmailAddress;
+        private By ByButtonCreateAnAccount;
+        private By ByInputTitle;
+        private By ByInputFirstName;
+        private By ByInputLastName;
+        private By ByInputEmail;
+        private By ByInputPassword;
+        private By BySelectDays;
+        private By BySelectMonths;
+        private By BySelectYears;
+        private By ByInputCompany;
+        private By ByInputAddress;
+        private By ByInputCity;
+        private By BySelectState;
+        private By ByInputPostalCode;
+        private By BySelectCountry;
+        private By ByInputMobilePhone;
+        private By ByEmailFutureReference;
+        private By ByButtonRegistrer;
+        private By ByTextWelcomeToYourAccount;
+        private FakeDataGenerator Generator;
+        public string Email;
+        private By ByMessageEmailInvalid;
 
         public CreateAnAncountPage(IWebDriver driver) {
-            this.driver = driver;
-            byInputEmailAddress = By.Id("email_create");
-            byButtonCreateAnAccount = By.Id("SubmitCreate");
-            byInputTitle = By.CssSelector("div[class='radio-inline'] input:nth-child(1)");
-            byInputFirstName = By.Id("customer_firstname");
-            byInputLastName = By.Id("customer_lastname");
-            byInputEmail = By.Id("email");
-            byInputPassword = By.Id("passwd");
-            bySelectDays = By.Id("days");
-            bySelectMonths = By.Id("months");
-            bySelectYears = By.Id("years");
-            byInputCompany = By.Id("company");
-            byInputAddress = By.Id("address1");
-            byInputCity = By.Id("city");
-            bySelectState = By.Id("id_state");
-            byInputPostalCode = By.Id("postcode");
-            bySelectCountry = By.Id("id_country");
-            byInputMobilePhone = By.Id("phone_mobile");
-            byEmailFutureReference = By.Id("alias");
-            byButtonRegistrer = By.Id("submitAccount");
-            byTextWelcomeToYourAccount = By.ClassName("info-account");
-            byMessageEmailInvalid = By.CssSelector("#create_account_error li");
-            generator = new FakeDataGenerator();
+            this.Driver = driver;
+            ByInputEmailAddress = By.Id("email_create");
+            ByButtonCreateAnAccount = By.Id("SubmitCreate");
+            ByInputTitle = By.CssSelector("div[class='radio-inline'] input:nth-child(1)");
+            ByInputFirstName = By.Id("customer_firstname");
+            ByInputLastName = By.Id("customer_lastname");
+            ByInputEmail = By.Id("email");
+            ByInputPassword = By.Id("passwd");
+            BySelectDays = By.Id("days");
+            BySelectMonths = By.Id("months");
+            BySelectYears = By.Id("years");
+            ByInputCompany = By.Id("company");
+            ByInputAddress = By.Id("address1");
+            ByInputCity = By.Id("city");
+            BySelectState = By.Id("id_state");
+            ByInputPostalCode = By.Id("postcode");
+            BySelectCountry = By.Id("id_country");
+            ByInputMobilePhone = By.Id("phone_mobile");
+            ByEmailFutureReference = By.Id("alias");
+            ByButtonRegistrer = By.Id("submitAccount");
+            ByTextWelcomeToYourAccount = By.ClassName("info-account");
+            ByMessageEmailInvalid = By.CssSelector("#create_account_error li");
+            Generator = new FakeDataGenerator();
         }
 
         public string GetProblemMessageFromEmail() {
-            return driver.FindElement(byMessageEmailInvalid).Text;
+            return Driver.FindElement(ByMessageEmailInvalid).Text;
         }
 
         public void Access() {
-            driver.Navigate().GoToUrl("http://automationpractice.com/index.php?controller=authentication#account-creation");
+            Driver.Navigate().GoToUrl("http://automationpractice.com/index.php?controller=authentication#account-creation");
         }
 
         public void CreateEmail(string email) {
-            driver.FindElement(byInputEmailAddress).SendKeys(email);
-            driver.FindElement(byButtonCreateAnAccount).Click();
+            Driver.FindElement(ByInputEmailAddress).SendKeys(email);
+            Driver.FindElement(ByButtonCreateAnAccount).Click();
         }
 
 
         public void SetTitle() {
-            driver.FindElement(byInputTitle).Click();
+            Driver.FindElement(ByInputTitle).Click();
         }
 
         public void SetFirstName() {
-            driver.FindElement(byInputFirstName).SendKeys(generator.FirstName);
+            Driver.FindElement(ByInputFirstName).SendKeys(Generator.FirstName);
         }
 
         public void SetLastName() {
-            driver.FindElement(byInputLastName).SendKeys(generator.LastName);
+            Driver.FindElement(ByInputLastName).SendKeys(Generator.LastName);
         }
 
 
         public void SetPassword(string valor) {
-            driver.FindElement(byInputPassword).SendKeys(valor);
+            Driver.FindElement(ByInputPassword).SendKeys(valor);
         }
 
         public void SelectDateOfBirth() {
             //Days
-            var elementDays = driver.FindElement(bySelectDays);
+            var elementDays = Driver.FindElement(BySelectDays);
             var selectDays = new SelectElement(elementDays);
             selectDays.SelectByValue("2");
             //Months
-            var elementMonths = driver.FindElement(bySelectMonths);
+            var elementMonths = Driver.FindElement(BySelectMonths);
             var selectMonths = new SelectElement(elementMonths);
             selectMonths.SelectByValue("5");
 
             //Years
-            var elementYears = driver.FindElement(bySelectYears);
+            var elementYears = Driver.FindElement(BySelectYears);
             var selectYears = new SelectElement(elementYears);
             selectYears.SelectByValue("1996");
         }
 
         public void SetCompany() {
-            driver.FindElement(byInputCompany).SendKeys(generator.Componay);
+            Driver.FindElement(ByInputCompany).SendKeys(Generator.Componay);
         }
 
         public void SetAddress() {
-            driver.FindElement(byInputAddress).SendKeys(generator.Address);
+            Driver.FindElement(ByInputAddress).SendKeys(Generator.Address);
         }
 
         public void SetCity() {
-            driver.FindElement(byInputCity).SendKeys(generator.City);
+            Driver.FindElement(ByInputCity).SendKeys(Generator.City);
         }
 
         public void SelectState() {
-            var elementState = driver.FindElement(bySelectState);
+            var elementState = Driver.FindElement(BySelectState);
             var selectState = new SelectElement(elementState);
             selectState.SelectByValue("6");
         }
 
         public void SetPostalCode() {
-            driver.FindElement(byInputPostalCode).SendKeys("56421");
+            Driver.FindElement(ByInputPostalCode).SendKeys("56421");
         }
 
         public void SetMobilePhone() {
-            driver.FindElement(byInputMobilePhone).SendKeys("8155424561");
+            Driver.FindElement(ByInputMobilePhone).SendKeys("8155424561");
         }
 
         public void SetAddressFutureReference() {
-            driver.FindElement(byEmailFutureReference).SendKeys("teste");
+            Driver.FindElement(ByEmailFutureReference).SendKeys("teste");
         }
 
         public void Register() {
-            driver.FindElement(byButtonRegistrer).Click();
+            Driver.FindElement(ByButtonRegistrer).Click();
         }
 
         public void FillInRegistrationInformation() {
-            email = generator.Email;
-            CreateEmail(email);
+            Email = Generator.Email;
+            CreateEmail(Email);
             SetTitle();
             SetFirstName();
             SetLastName();
