@@ -15,7 +15,7 @@ namespace WebAutomationPratique.Fixture {
         public TestFixture() {
             Driver = new ChromeDriver();
             Driver.Manage().Window.Maximize();
-            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 
         public void Dispose() {
