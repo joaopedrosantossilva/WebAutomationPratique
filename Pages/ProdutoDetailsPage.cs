@@ -34,7 +34,11 @@ namespace WebAutomationPratique.Pages {
 
         public string GetProductMessageAdded() {
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-            wait.Until(ExpectedConditions.ElementToBeClickable(ByMessageAddToCart));
+            wait.Until(driver => {
+                IWebElement element = driver.FindElement(ByMessageAddToCart);
+                return element.Displayed;
+            });
+            //   ExpectedConditions.ElementToBeClickable(ByMessageAddToCart));
             return Driver.FindElement(ByMessageAddToCart).Text;
         }
 
@@ -61,7 +65,7 @@ namespace WebAutomationPratique.Pages {
         }
 
         public string GetQuantityOfProductInCart() {
-            return "Cart "+ Driver.FindElement(ByGetQuantityInCart).Text + " Product";
+            return "Cart " + Driver.FindElement(ByGetQuantityInCart).Text + " Product";
         }
 
 
